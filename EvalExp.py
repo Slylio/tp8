@@ -16,17 +16,15 @@ class EvalExp(stack.StackList):
         
     
     def evaluate(self,exp):
-        operators=['+','-','*','/']
-        expList=self.exp.split(" ")
+        expList=exp.split(" ")
         for val in expList:
-            if val.isdigit():
-                self.stack.push(val)
-            elif val in operators:
-                if not self.stack.empty_stack():
-                    toPush=self.stack.mtop
-
-
-                else :
-                    raise Exception("Can't make calculs without numbers")
+            if val=="+":
+                self.stack.push(self.stack.pop().value+self.stack.pop().value)
+            elif val=="-":
+                self.stack.push(self.stack.pop().value-self.stack.pop().value)
+            elif val=="*":
+                self.stack.push(self.stack.pop().value*self.stack.pop().value)
+            elif val=="/":
+                self.stack.push(self.stack.pop().value/self.stack.pop().value)
             else :
-                raise Exception("Enter correct values")
+                self.stack.push(val)
