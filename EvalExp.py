@@ -19,12 +19,33 @@ class EvalExp(stack.StackList):
         expList=exp.split(" ")
         for val in expList:
             if val=="+":
-                self.stack.push(self.stack.pop().value+self.stack.pop().value)
+                res=int(self.stack.top_value())
+                self.stack.pop()
+                res+=int(self.stack.top_value())
+                self.stack.pop()
+
+                self.stack.push(res)
             elif val=="-":
-                self.stack.push(self.stack.pop().value-self.stack.pop().value)
+                res=int(self.stack.top_value())
+                self.stack.pop()
+                res-=int(self.stack.top_value())
+                self.stack.pop()
+
+                self.stack.push(res)
             elif val=="*":
-                self.stack.push(self.stack.pop().value*self.stack.pop().value)
+                res=int(self.stack.top_value())
+                self.stack.pop()
+                res*=int(self.stack.top_value())
+                self.stack.pop()
+
+                self.stack.push(res)
             elif val=="/":
-                self.stack.push(self.stack.pop().value/self.stack.pop().value)
+                res=int(self.stack.top_value())
+                self.stack.pop()
+                res/=int(self.stack.top_value())
+                self.stack.pop()
+
+                self.stack.push(res)
             else :
                 self.stack.push(val)
+        return self.stack
